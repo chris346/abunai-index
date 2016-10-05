@@ -67,7 +67,7 @@
 /*/HERO*********************/
 /*messageBoard*********************/
 	.menu-on{
-		background-color: #000;
+		background-color: rgba(0,0,0,0);
 		width: 40px; /*also used to adjust icon size*/
 		color: #fff;
 		position: absolute;
@@ -123,19 +123,10 @@
 	#toggle-menu:checked ~ .menu-off{
 		display: block;
 	}
-/*	@media screen and (min-width: 600px){
-		.menu-on, .menu-off {
-			display: none;
-		}
-		.messageBoard{
-			display: block;
-			overflow: scroll;
-		}
-	}*/
 /*messageBoard*********************/
-/*chatroom*********************/
-	.chat-on{
-		background-color: #000;
+/*picture**************************/
+	.picture-on{
+		background-color: rgba(0,0,0,0);
 		width: 40px; /*also used to adjust icon size*/
 		color: #fff;
 		position: absolute;
@@ -146,13 +137,13 @@
 		margin-top: 15%;
 	}
 	@media screen and (min-width: 600px){
-		.chat-on{
+		.picture-on{
 			width: 50px; /*may need to adjust as more buttons are added*/
 			margin-top: 10%;
 
 		}	
 	}
-	.chat-off{
+	.picture-off{
 		position: absolute;
 		width: 50px; /*also used to adjust icon size*/
 		top: 0;
@@ -160,7 +151,7 @@
 		z-index: 1004;
 		display: none;
 	}
-	.chatroom {
+	.pictureRoom {
 		position: absolute;
 		right: 0;
 		top: 0; 
@@ -168,33 +159,116 @@
 		z-index: 1002;
 		display: none;
 		width: 100%;
-		height: 65%;
+		height: 500px;
+		background-color: #222;
 		height: 100%;
-		background-color: gold;
-	}	
-
+	}
+	.pictureFrame{
+		background-color: #000;
+		margin: 0 auto;
+	}
+	
+	.pictureRoom h2{
+		color: white;
+			}
 	@media screen and (min-width: 600px){
-		.chatroom{
-			width: 45%;
+		.pictureRoom{
+			width: 100%;
 		}	
 	}
-	.chat-icon{
+	.picture-icon{
 		width: 30px;
 	}
 	.x-icon{
 		width: 30px;
 		margin-right: 17%;
 	}
-	#toggle-chat {
+	#toggle-picture {
 		display: none;
 	}
-	#toggle-chat:checked ~ .chatroom {
+	#toggle-picture:checked ~ .pictureRoom {
 		display: block;
 	}
-	#toggle-chat:checked ~ .chat-off{
+	#toggle-picture:checked ~ .picture-off{
 		display: block;
 	}
-/*chatroom*********************/
+/*picture*************************/
+/*videoroom*********************/
+	.video-on{
+		background-color: rgba(0,0,0,0);
+		width: 40px; /*also used to adjust icon size*/
+		color: #fff;
+		position: absolute;
+		right: 0; /*to adjust position of button*/
+		top: 100; /*to adjust position of button*/
+		z-index: 1000; /*might need to adjust when using other buttons*/
+		padding: 10px;
+		margin-top: 30%;
+	}
+	@media screen and (min-width: 600px){
+		.video-on{
+			width: 50px; /*may need to adjust as more buttons are added*/
+			margin-top: 20%;
+
+		}	
+	}
+	.video-off{
+		position: absolute;
+		width: 50px; /*also used to adjust icon size*/
+		top: 0;
+		right: 0;
+		z-index: 1004;
+		display: none;
+	}
+	.videoroom {
+		position: absolute;
+		right: 0;
+		top: 0; 
+		min-width: 200px;
+		z-index: 1002;
+		display: none;
+		width: 100%;
+		max-height: 500px;
+		background-color: #222;
+		text-align: center;
+		margin-top: 100px;
+	}	
+	.videoroom h2{
+		color: white;
+	}
+	@media screen and (min-width: 600px){
+		.videoroom{
+			width: 100%;
+		}	
+	}
+	.video-icon{
+		width: 30px;
+	}
+	.x-icon{
+		width: 30px;
+		margin-right: 17%;
+	}
+	#toggle-video {
+		display: none;
+	}
+	#toggle-video:checked ~ .videoroom {
+		display: block;
+	}
+	#toggle-video:checked ~ .video-off{
+		display: block;
+	}
+	#todaysTitle{
+		color: #d70000;
+		margin-top: 20px;
+	}
+	#todaysDate{
+		margin-bottom: 15px;
+	}
+	#todaysSchedule{
+		margin-bottom: 20px;
+
+	}
+/*videoroom*********************/
 /*MAIN*********************/
 		.title{
 			font-size: 2em;
@@ -206,7 +280,6 @@
 		}
 		
 		.mainInner{
-			/*background-color: green;*/
 			margin: 0 auto;
 			display: block;
 			padding-bottom:0%;
@@ -248,9 +321,16 @@
 
 		}
 		.text{
-			height: 400px;
-			overflow: scroll;
+			height: auto;
+			overflow: auto;
 		}
+		@media screen and (min-width: 600px){
+			.text{
+				overflow: scroll;
+				height:437px;
+			}	
+		}
+
 		.text::-webkit-scrollbar{
 			display: none;
   	  	}
@@ -264,10 +344,16 @@
 		.aside{
 			background-color: rgba(0,0,0, .6);
 			flex: 1;
-			overflow: scroll;
+			overflow: auto;
 			padding-right: 15px;
 			padding-left: 15px;
-			height:637px;
+			height: auto;
+		}
+		@media screen and (min-width: 600px){
+			.aside{
+				overflow: scroll;
+				height:637px;
+			}	
 		}
 		.aside::-webkit-scrollbar{
 			display: none;
@@ -282,7 +368,7 @@
 		.linearGradientTypeBottom{
 			width:100%;
 			height:100%;
-			background: -webkit-linear-gradient(rgba(0,0,0,0) 20%, #000);
+			background: -webkit-linear-gradient(#000, rgba(0,0,0,0) 20%, #000);
 		}
 		/*schedule***************************/
 		.dayName{
@@ -304,12 +390,9 @@
         	flex: 4;
 		}
 		
-		 .am .slot:nth-child(odd) {
+		 .groupedClasses .slot:nth-child(odd) {
    			 background: rgba(0,0,0, .4);
 		}		
-		 .pm .slot:nth-child(odd) {
-   			 background: rgba(0,0,0, .4);
-		}
 /*MAIN*********************/
 /*FOOTER*********************/
 		.primary-footer{
@@ -339,21 +422,16 @@
 		}
 		.iconSection{
 			display: flex;
-			padding: 20px;
+			padding-top: 10px;
+			padding-bottom: 20px;
+			margin: 0 auto;
 		}
-		.iconContainer{
+		.iconSection a {
 			flex: 1;
 		}
-		.iconTitle{
-			text-align: center;
-			font-size: .3em;
-			color: #fff;
-		}
-		.iconContainer img{
-			display: block; 
-			width: 40px;
-			margin-left: auto; 
-			margin-right: auto;
+		.iconSection a img{
+			display:block;
+    		margin:auto;
 		}
 		
 		.footerContent{
@@ -407,7 +485,7 @@
 				<h1>Abunai MMA</h1>
 		</div>
 	</div> -->
-	
+
 	<div class="hero">
 
 		<div class="linearGradientTop">
@@ -421,14 +499,66 @@
 				<div class="messageBoard">				
 				<a class="twitter-timeline" data-theme="dark" data-link-color="#E81C4F" href="https://twitter.com/abunaimmajj">Message Board by abunaimmajj</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>				</div>
 			<!-- Message Board	-->	
-			<!-- Chat Room	-->
-				<input id="toggle-chat" type="checkbox" />
-				<label for="toggle-chat" class="chat-on"><img class="chat-icon" src="icon-chat.jpeg" alt=""></label>
-				<label for="toggle-chat" class="chat-off"><img class="x-icon" src="x.png" alt=""></label>
-				<div class="chatroom">
-					<h1>THIS FEATURE IS UNDER CONSTRUCTION</h1>			
+			<!-- Picture Room	-->
+				<input id="toggle-picture" type="checkbox" />
+				<label for="toggle-picture" class="picture-on"><img class="picture-icon" src="icon-picture.png" alt=""></label>
+				<label for="toggle-picture" class="picture-off"><img class="x-icon" src="x.png" alt=""></label>
+				<div class="pictureRoom">
+					<h2>PHOTOS</h2>
+					<iframe class="pictureFrame"scrolling="no" marginheight="0" frameborder="0" width="100%" style="height: 1500px;" src="http://facebookgalleria.com/gallery.php?id=580021405488708&display=album&rows=10&margin=10&cols=5&width=150&font_size=10&title_color=000000&hide_next_back=0&share_buttons=1&shape=rectangle&frame=1&token=76f07b3e-89fe-11e6-b31c-30eb0f887bd0"></iframe>			
 				</div>
-			<!-- Chat Room	-->	
+				<!-- Picture Room	-->			
+			<!-- video Room	-->
+				<input id="toggle-video" type="checkbox" />
+				<label for="toggle-video" class="video-on"><img class="video-icon" src="icon-today.png" alt=""></label>
+				<label for="toggle-video" class="video-off"><img class="x-icon" src="x.png" alt=""></label>
+				<div class="videoroom">
+					<h2 id="todaysTitle">Today's Schedule</h2>
+					<h4 id="todaysDate"></h4>
+					<div id="todaysSchedule">
+						schedule
+					</div>
+					<script>
+					window.onload = function() {
+						document.getElementById("todaysSchedule").innerHTML = Date();
+
+						var date = Date();
+						var day = date.substring(0,3);
+
+						var tuesdayClasses = document.getElementById("tuesday");
+						if(day == "Mon"){
+							document.getElementById("todaysDate").innerHTML = Date();
+							document.getElementById("todaysSchedule").innerHTML = 
+							"5:15pm. Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.<br>6pm. All Levels- Judo/Competition Brazilian Jiu-jitsu.<br>7pm. All Levels- MMA. <br>8pm. Adults- Advanced Brazilian Jiu-jitsu.<br>9pm. Closed."
+						} else if(day == "Tue"){
+							document.getElementById("todaysDate").innerHTML = Date();
+							document.getElementById("todaysSchedule").innerHTML = 
+							"5:15pm. Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.<br>6pm. All Levels- Judo/Competition Brazilian Jiu-jitsu.<br>7pm. All Levels- MMA. <br>8pm. Adults- Advanced Brazilian Jiu-jitsu.<br>9pm. Closed."
+						} else if(day == "Wed"){
+							document.getElementById("todaysDate").innerHTML = Date();
+							document.getElementById("todaysSchedule").innerHTML = 
+							"<br>5:15pm. Kids- Judo/Competition  Brazilian Jiu-jitsu.<br>6pm. All Levels- Brazilian Jiu-jitsu Fundamentals. <br>7pm. All Levels- No-Gi Grappling. <br>8pm. Adults- Advanced Brazilian Jiu-jitsu. <br>9pm. Closed.";
+						} else if(day == "Thu"){
+							document.getElementById("todaysDate").innerHTML = Date();
+							document.getElementById("todaysSchedule").innerHTML = 
+							"<br>5:15pm. Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.<br>6pm. All Levels- Judo/Competition Brazilian Jiu-jitsu.<br>7pm. All Levels- MMA.<br>8pm. Adults- Advanced Brazilian Jiu-jitsu. <br>9pm. Closed. ";
+						} else if(day == "Fri"){
+							document.getElementById("todaysDate").innerHTML = Date();
+							document.getElementById("todaysSchedule").innerHTML = 
+							"<br>5:15pm. All Levels- Brazilian Jiu-jitsu Fundamentals. <br>6pm. All Levels- No-Gi Grappling. <br>7pm. Adults- Advanced Brazilian Jiu-jitsu.<br>8pm. Closed. ";
+						} else if(day == "Sat"){
+							document.getElementById("todaysDate").innerHTML = Date();
+							document.getElementById("todaysSchedule").innerHTML = 
+							"<br>7am. Strength & Conditioning.<br>8am. All Levels - No-Gi Grappling/MMA. <br>9am. All Levels- Judo/Brazilian Jiu-jitsu Fundamentals. <br>10am. All Levels- Advanced Brazilian Jiu-jitsu. <br>11pm. Open Mat. <br>1pm. Closed. ";
+						} else if(day == "Sun"){
+							document.getElementById("todaysDate").innerHTML = Date();
+							document.getElementById("todaysSchedule").innerHTML = 
+							"•3pm-5pm. Open Mat. (TBA)";
+						}
+					}
+					</script>	
+				</div>
+			<!-- video Room	-->		
 				<img src="risingSunLogoHD.jpg" alt="">
 			</div>
 		</div>
@@ -472,7 +602,7 @@
 									<div class="dayName">Monday</div>
 
 									<div class="period">
-										<div class="am">
+										<div class="groupedClasses" id="monday">
 											
 											<div class="slot">
 												<div class="time">8am</div><div class="class">All Levels- Brazilian Jiu-jitsu Fundamentals. </div>
@@ -486,10 +616,10 @@
 											<div class="slot">
 												<div class="time">11am</div><div class="class"> Closed</div>							
 											</div>	
-
+<!-- 
 										</div>	
 
-										<div class="pm">									
+										<div class="pm">	 -->								
 											
 											<div class="slot">
 												<div class="time">5:15pm</div><div class="class">Kids- Judo/Competition Brazilian Jiu-jitsu</div>
@@ -514,11 +644,11 @@
 
 							<!-- Tuesday	 -->		
 								<div class="day">
-									<div class="dayName">Tuesday</div>
+									<div class="dayName"">Tuesday</div>
 
 									<div class="period">
 
-										<div class="pm">									
+										<div class="groupedClasses" id="tuesday>									
 											
 											<div class="slot">
 												<div class="time">5:15pm</div><div class="class">Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.</div>
@@ -545,7 +675,7 @@
 								<div class="day">
 									<div class="dayName">Wednesday</div>
 
-										<div class="pm">									
+										<div class="groupedClasses">									
 											
 											<div class="slot">
 												<div class="time">5:15pm</div><div class="class">Kids- Judo/Competition Brazilian Jiu-jitsu</div>
@@ -572,7 +702,7 @@
 								<div class="day">
 									<div class="dayName">Thursday</div>
 
-										<div class="pm">									
+										<div class="groupedClasses">									
 											
 											<div class="slot">
 												<div class="time">5:15pm</div><div class="class">Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.</div>
@@ -600,7 +730,7 @@
 
 									<div class="period">
 
-										<div class="pm">									
+										<div class="groupedClasses">									
 																	
 											<div class="slot">
 												<div class="time">5:15pm</div><div class="class">All Levels- Brazilian Jiu-jitsu Fundamentals</div>
@@ -625,7 +755,7 @@
 									<div class="dayName">Saturday</div>
 
 									<div class="period">
-										<div class="am">
+										<div class="groupedClasses">
 											
 											<div class="slot">
 												<div class="time">7am</div><div class="class">Strength & Conditioning</div>
@@ -643,9 +773,9 @@
 												<div class="time">11am</div><div class="class">Open Mat</div>							
 											</div>	
 
-										</div>	
+<!-- 										</div>	
 
-										<div class="pm">									
+										<div class="pm"> -->									
 											
 											<div class="slot">
 												<div class="time">1pm</div><div class="class">Closed</div>
@@ -661,7 +791,7 @@
 									<div class="dayName">Sunday</div>
 
 									<div class="period">
-										<div class="am">
+										<div class="groupedClasses">
 											
 											<div class="slot">
 												<div class="time">3-5PM</div><div class="class">Open Mat (TBA) </div>
@@ -688,8 +818,24 @@
 			<div class="media">
 				<div class="footerTitle">Follow Us</div>
 				<div class="iconSection">
+					<!-- https://socialmediawidgets.files.wordpress.com/2014/03/10_instagram1.png -->
+					<a href="https://www.facebook.com/Abunai-MMA-JiujitsuNava-Brazilian-Jiu-jitsu-298814180276100/">
+						<img title="Facebook" alt="Facebook" src="https://socialmediawidgets.files.wordpress.com/2014/03/02_facebook1.png" width="35" height="35" />
+					</a>
+
+					<a href="https://twitter.com/search?f=tweets&q=abunaimmajj&src=typd">
+						<img title="Twitter" alt="Twitter" src="https://socialmediawidgets.files.wordpress.com/2014/03/01_twitter1.png" width="35" height="35" />
+					</a>
+					
+					<a href="https://www.youtube.com/user/XRS300">
+						<img title="youtube" alt="youtube" src="https://socialmediawidgets.files.wordpress.com/2014/03/03_youtube.png" width="35" height="35" />
+					</a>
+										
+					<a href="https://www.instagram.com/abunaimmajj/">
+						<img title="Instagram" alt="Instagram" src="https://socialmediawidgets.files.wordpress.com/2014/03/10_instagram1.png" width="35" height="35" />
+					</a>
 							
-							<div class="iconContainer">
+<!-- 							<div class="iconContainer">
 								<a href="https://www.facebook.com/Abunai-MMA-JiujitsuNava-Brazilian-Jiu-jitsu-298814180276100/">
 									<img src="icon-facebook.png" alt="">
 									<div class="iconTitle">
@@ -712,7 +858,7 @@
 										Instagram	
 									</div>
 								</a>
-							</div>		
+							</div>	 -->	
 				</div>
 			</div>
 
@@ -736,10 +882,10 @@
 
 			<div class="copyright">
 				<p>© Copyright 2016, Abunai MMA</p>
+
 			</div>
 		</div>
+		<div>
+
+	</div>
 	</footer>
-1
-              
-</body>
-</html>
