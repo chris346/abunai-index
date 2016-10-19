@@ -43,6 +43,8 @@
 /*HERO*********************/
 		.hero{
 			background: #000;
+			background: url("collageMod2.jpg");	
+			background-size: 50% auto;
 		}
 		.linearGradientTop{
 			width:100%;
@@ -64,6 +66,30 @@
 			width: 100%;
 			height: auto;
 		}
+		#risingSun{
+			display: none;
+		}
+		#logoReveal{
+			display:block;
+		}
+		video{
+			width: 100%;
+		}
+		@media screen and (min-width: 600px){
+			#logoReveal{
+				display: block;
+			}	
+		}
+		@media only screen and (max-width: 480px){
+    	/* rules defined inside here are only applied to browsers that support CSS media queries and the browser window is 480px or smaller */
+    		#logoReveal{
+				display: none;
+				volume: silent;
+			}	
+			#risingSun{
+				display: block;
+			}
+  		}
 /*/HERO*********************/
 /*messageBoard*********************/
 	.menu-on{
@@ -232,6 +258,7 @@
 		background-color: #222;
 		text-align: center;
 		margin-top: 100px;
+		font-family: helvetica;
 	}	
 	.videoroom h2{
 		color: white;
@@ -262,17 +289,47 @@
 		margin-top: 20px;
 	}
 	#todaysDate{
-		margin-bottom: 15px;
+		margin-: 15px;
 	}
 	#todaysSchedule{
 		margin-bottom: 20px;
 
 	}
+/*	-----------------*/
+#realtime {
+    font-family: Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+    font-weight: 100;
+    display: block;
+    text-align: center;
+    font-size: 3vw;
+    padding: 1rem 0;
+}
+
+#realtime span {
+    display: inline-block;
+    font-family: Avenir Next, Nunito, sans-serif;
+    font-weight: 100;
+    font-size: 3vw;
+    position: relative;
+    top: -1.5vw;
+}
+
+@media all and (max-width: 600px) {
+    #realtime {
+        font-size: 2rem;
+        padding: 0rem 0;
+    };
+}
+
+@media all and (max-width: 350px) {
+ 
+    #realtime {
+        font-size: 3rem;
+        padding: 2rem 0;
+    };
+}
 /*videoroom*********************/
 /*MAIN*********************/
-		.title{
-			font-size: 2em;
-		}
 		.main{
 			background: url("collageMod.jpg");	
 			background-size: 50% auto;
@@ -338,6 +395,7 @@
 
 		}
 		.text .title{
+			font-size: 2em;
 			text-align: center;
 			color: #d70000;
 		}
@@ -371,10 +429,15 @@
 			background: -webkit-linear-gradient(#000, rgba(0,0,0,0) 20%, #000);
 		}
 		/*schedule***************************/
+		.schedule .title {
+			font-size: 2em;
+			text-align: center;
+			color: #d70000;
+		}
 		.dayName{
-			text-align: center;	
+			text-align: left;	
 			background-color: rgba(0,0,0, .6);
-			color: #d70000;	
+			color: #fff;	
 			font-size: 1.5em;
 			margin-top: 15px;
 
@@ -450,15 +513,23 @@
 			display: flex;
 			flex-direction: column;
 		}
-		.contactInfoWrapper img{
+/*		.contactInfoWrapper img{
 			width: 40%;
 			margin: 0 auto;
 		}
-		.contactInfoInner{
+*/		.contactInfoInner{
 			flex: 1;
 			padding-top: 10px;
 			background-color: #222	
 			color: #d70000;
+		}
+		.logoWrapper{
+			display: flex;
+		}
+		.logoWrapper img{
+			flex:1;
+			margin: 0 auto;
+			height: 130px;
 		}
 		.footerFiller{
 			flex: 1;
@@ -476,21 +547,24 @@
 			border-top: #d70100 solid 1px;
 		}
 /*********************FOOTER*/
+
+
 	</style>
 </head>
 <body>
-	
-<!-- 	<div class="header">
+<!-- div class="overlay"></div> -->
+   <!-- 	<div class="header">
 		<div class="headerInner">
 				<h1>Abunai MMA</h1>
 		</div>
 	</div> -->
-
+<!-- 	<div class="overlay"></div> -->
 	<div class="hero">
 
 		<div class="linearGradientTop">
+
 			<div class="heroInner">
-			
+
 			<!-- Message Board	-->
 				<input id="toggle-menu" type="checkbox" />
 				<label for="toggle-menu" class="menu-on"><img class="message-icon" src="message.png" alt=""></label>
@@ -507,59 +581,121 @@
 					<h2>PHOTOS</h2>
 					<iframe class="pictureFrame"scrolling="no" marginheight="0" frameborder="0" width="100%" style="height: 1500px;" src="http://facebookgalleria.com/gallery.php?id=580021405488708&display=album&rows=10&margin=10&cols=5&width=150&font_size=10&title_color=000000&hide_next_back=0&share_buttons=1&shape=rectangle&frame=1&token=76f07b3e-89fe-11e6-b31c-30eb0f887bd0"></iframe>			
 				</div>
-				<!-- Picture Room	-->			
+			<!-- Picture Room	-->			
 			<!-- video Room	-->
 				<input id="toggle-video" type="checkbox" />
 				<label for="toggle-video" class="video-on"><img class="video-icon" src="icon-today.png" alt=""></label>
 				<label for="toggle-video" class="video-off"><img class="x-icon" src="x.png" alt=""></label>
 				<div class="videoroom">
 					<h2 id="todaysTitle">Today's Schedule</h2>
-					<h4 id="todaysDate"></h4>
+					<h3 id="todaysDate"></h3>
+					<time id="realtime"></time>
 					<div id="todaysSchedule">
-						schedule
+						Loading...
 					</div>
 					<script>
-					window.onload = function() {
-						document.getElementById("todaysSchedule").innerHTML = Date();
+						// var dayOfWeek = "shit";
+						window.onload = function() {
+							document.getElementById("todaysSchedule").innerHTML = Date();
 
-						var date = Date();
-						var day = date.substring(0,3);
+							var date = Date();
+							var day = date.substring(0,date.indexOf(' '));
+							var dayArray = new Array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+							var dayOfWeek = "";
+							
+							if (day == "Mon"){
+								dayOfWeek = "Monday";
+							}	
+							if (day == "Tue"){
+								dayOfWeek = "Tuesday";
+							}	
+							if (day == "Wed"){
+								dayOfWeek = "Wednesday";
+							}	
+							if (day == "Thu"){
+								dayOfWeek = "Thursday";
+							}	
+							if (day == "Fri"){
+								dayOfWeek = "Friday";
+							}	
+							if (day == "Sat"){
+								dayOfWeek = "Saturday";
+							}	
+							if (day == "Sun"){
+								dayOfWeek = "Sunday";
+							}
 
-						var tuesdayClasses = document.getElementById("tuesday");
-						if(day == "Mon"){
-							document.getElementById("todaysDate").innerHTML = Date();
-							document.getElementById("todaysSchedule").innerHTML = 
-							"5:15pm. Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.<br>6pm. All Levels- Judo/Competition Brazilian Jiu-jitsu.<br>7pm. All Levels- MMA. <br>8pm. Adults- Advanced Brazilian Jiu-jitsu.<br>9pm. Closed."
-						} else if(day == "Tue"){
-							document.getElementById("todaysDate").innerHTML = Date();
-							document.getElementById("todaysSchedule").innerHTML = 
-							"5:15pm. Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.<br>6pm. All Levels- Judo/Competition Brazilian Jiu-jitsu.<br>7pm. All Levels- MMA. <br>8pm. Adults- Advanced Brazilian Jiu-jitsu.<br>9pm. Closed."
-						} else if(day == "Wed"){
-							document.getElementById("todaysDate").innerHTML = Date();
-							document.getElementById("todaysSchedule").innerHTML = 
-							"<br>5:15pm. Kids- Judo/Competition  Brazilian Jiu-jitsu.<br>6pm. All Levels- Brazilian Jiu-jitsu Fundamentals. <br>7pm. All Levels- No-Gi Grappling. <br>8pm. Adults- Advanced Brazilian Jiu-jitsu. <br>9pm. Closed.";
-						} else if(day == "Thu"){
-							document.getElementById("todaysDate").innerHTML = Date();
-							document.getElementById("todaysSchedule").innerHTML = 
-							"<br>5:15pm. Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.<br>6pm. All Levels- Judo/Competition Brazilian Jiu-jitsu.<br>7pm. All Levels- MMA.<br>8pm. Adults- Advanced Brazilian Jiu-jitsu. <br>9pm. Closed. ";
-						} else if(day == "Fri"){
-							document.getElementById("todaysDate").innerHTML = Date();
-							document.getElementById("todaysSchedule").innerHTML = 
-							"<br>5:15pm. All Levels- Brazilian Jiu-jitsu Fundamentals. <br>6pm. All Levels- No-Gi Grappling. <br>7pm. Adults- Advanced Brazilian Jiu-jitsu.<br>8pm. Closed. ";
-						} else if(day == "Sat"){
-							document.getElementById("todaysDate").innerHTML = Date();
-							document.getElementById("todaysSchedule").innerHTML = 
-							"<br>7am. Strength & Conditioning.<br>8am. All Levels - No-Gi Grappling/MMA. <br>9am. All Levels- Judo/Brazilian Jiu-jitsu Fundamentals. <br>10am. All Levels- Advanced Brazilian Jiu-jitsu. <br>11pm. Open Mat. <br>1pm. Closed. ";
-						} else if(day == "Sun"){
-							document.getElementById("todaysDate").innerHTML = Date();
-							document.getElementById("todaysSchedule").innerHTML = 
-							"•3pm-5pm. Open Mat. (TBA)";
+							if(day == "Mon"){
+								document.getElementById("todaysDate").innerHTML = dayOfWeek;
+								document.getElementById("todaysSchedule").innerHTML = 
+								"8am. All Levels- No-Gi Grappling.<br>9am. All Levels- Judo/Brazilian Jiu-jitsu Fundamentals.<br>10am. Adults- Advanced Brazilian Jiu-jitsu.<br>11am. Closed.<br>5:15pm. Kids- Judo/Competition Brazilian Jiu-jitsu.<br>6pm. All Levels- Brazilian Jiu-jitsu Fundamentals.<br>7pm. All Levels- No-Gi Grappling.<br> 8pm. Adults- Advanced Brazilian Jiu-jitsu.<br> 9pm. Closed"
+							} else if(day == "Tue"){
+								document.getElementById("todaysDate").innerHTML = dayOfWeek;
+								document.getElementById("todaysSchedule").innerHTML = 
+								"5:15pm. Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.<br> 6pm. All Levels- MMA.<br>  7pm. All Levels- Judo/Competition Brazilian Jiu-jitsu.<br> 8pm. Adults- Advanced Brazilian Jiu-jitsu.<br>  9pm. Closed.";
+							} else if(day == "Wed"){
+								document.getElementById("todaysDate").innerHTML = dayOfWeek;
+								document.getElementById("todaysSchedule").innerHTML = 
+								"5:15pm. Kids- Judo/Competition  Brazilian Jiu-jitsu.<br>6pm. All Levels- Brazilian Jiu-jitsu Fundamentals.<br>   7pm. All Levels- No-Gi Grappling. <br>8pm. Adults- Advanced Brazilian Jiu-jitsu.<br>9pm. Closed. ";
+							} else if(day == "Thu"){
+								document.getElementById("todaysDate").innerHTML = dayOfWeek;
+								document.getElementById("todaysSchedule").innerHTML = 
+								"5:15pm. Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.<br>6pm. All Levels- MMA.<br> 7pm. All Levels- Judo/Competition Brazilian Jiu-jitsu.<br> 8pm. Adults- Advanced Brazilian Jiu-jitsu.<br> 9pm. Closed.";
+							} else if(day == "Fri"){
+								document.getElementById("todaysDate").innerHTML = dayOfWeek;
+								document.getElementById("todaysSchedule").innerHTML = 
+								"5:15pm. All Levels- Brazilian Jiu-jitsu Fundamentals.<br> 6pm. All Levels- No-Gi Grappling.<br> 7pm. Adults- Advanced Brazilian Jiu-jitsu.<br>8pm. Closed.";
+							} else if(day == "Sat"){
+								document.getElementById("todaysDate").innerHTML = dayOfWeek;
+								document.getElementById("todaysSchedule").innerHTML = 
+								"7am. Strength & Conditioning.<br>8am. All Levels- MMA.<br>All Levels- No-Gi Grappling<br>10am. All Levels- Judo/Brazilian Jiu-jitsu Fundamentals.<br>11pm. Open Mat.<br>1pm. Closed. ";
+							} else if(day == "Sun"){
+								document.getElementById("todaysDate").innerHTML = dayOfWeek;
+								document.getElementById("todaysSchedule").innerHTML = 
+								"•3pm-5pm. Open Mat. (TBA)";
+							}
 						}
-					}
+					
+								// -------------------------
+						var currentTime = document.getElementById("realtime");
+						function zeropadder(n) {
+						  return (parseInt(n,10) < 10 ? '0' : '')+n;
+						}
+						function updateTime(){
+						  var timeNow= new Date(),
+						  hh = timeNow.getHours(),
+						  mm = timeNow.getMinutes(),
+						  ss = timeNow.getSeconds(),
+						  formatAMPM = (hh >= 12?'PM':'AM');
+						  hh = hh % 12 || 12;
+						  currentTime.innerHTML = hh + "<span>:</span>" + zeropadder(mm) + "<span>:</span>" + zeropadder(ss) + " " + formatAMPM;
+						  setTimeout(updateTime,1000);
+						}
+						updateTime();
+
+						// --------------------------
+
+						        setTimeout(switchHero, 6000); //Instead of 10000 put your video's length, in milliseconds  
+            					function switchHero() {
+                					document.getElementById("logoReveal").style.display="none";    
+                					document.getElementById("risingSun").style.display="block"; 
+           						 }
+						 $(function(){ 
+    						var video = document.querySelector('#logoReveal');
+   						 	video.play();
+						});
+
 					</script>	
 				</div>
 			<!-- video Room	-->		
-				<img src="risingSunLogoHD.jpg" alt="">
+				<img id="risingSun" src="risingSunLogoHD.jpg" alt="">
+				<div class="videoContainer">
+					<video id="logoReveal" width="1000px" webkit-playsinline autoplay muted>
+						<source src="logoReveal02.mp4" type="video/mp4">
+						<source src="mov_bbb.ogg" type="video/ogg">
+						Your browser does not support HTML5 video.
+					</video>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -595,8 +731,8 @@
 					<div class="asideInner">				
 						<div class="scheduleWrapper">
 							<div class="schedule">
-							
-
+					
+								<div class="title">Schedule</div>
 							<!-- Monday	 -->		
 								<div class="day">
 									<div class="dayName">Monday</div>
@@ -605,21 +741,18 @@
 										<div class="groupedClasses" id="monday">
 											
 											<div class="slot">
-												<div class="time">8am</div><div class="class">All Levels- Brazilian Jiu-jitsu Fundamentals. </div>
+												<div class="time">8am</div><div class="class">All Levels- No-Gi Grappling</div>
 											</div>			
 											<div class="slot">
-												<div class="time">9am</div><div class="class">Adults- Advanced Brazilian Jiu-jitsu. </div>
+												<div class="time">9am</div><div class="class">All Levels- Judo/Brazilian Jiu-jitsu Fundamentals</div>
 											</div>			
 											<div class="slot">
-												<div class="time">10am</div><div class="class"> All Levels- No-Gi Grappling. </div>
+												<div class="time">10am</div><div class="class"> Adults- Advanced Brazilian Jiu-jitsu</div>
 											</div>			
 											<div class="slot">
 												<div class="time">11am</div><div class="class"> Closed</div>							
 											</div>	
-<!-- 
-										</div>	
-
-										<div class="pm">	 -->								
+						
 											
 											<div class="slot">
 												<div class="time">5:15pm</div><div class="class">Kids- Judo/Competition Brazilian Jiu-jitsu</div>
@@ -648,19 +781,19 @@
 
 									<div class="period">
 
-										<div class="groupedClasses" id="tuesday>									
+										<div class="groupedClasses" id="tuesday">									
 											
 											<div class="slot">
 												<div class="time">5:15pm</div><div class="class">Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.</div>
 											</div>							
 											<div class="slot">
-												<div class="time">6pm</div><div class="class">Judo/Competition Brazilian Jiu-jitsu</div>
+												<div class="time">6pm</div><div class="class">All Levels- MMA</div>
 											</div>							
 											<div class="slot">
-												<div class="time">7pm</div><div class="class">All Levels- MMA</div>
+												<div class="time">7pm</div><div class="class">All Levels- Judo/Competition Brazilian Jiu-jitsu</div>
 											</div>							
 											<div class="slot">
-												<div class="time">8pm</div><div class="class">Advanced Brazilian Jiu-jitsu</div>
+												<div class="time">8pm</div><div class="class">Adults- Advanced Brazilian Jiu-jitsu</div>
 											</div>							
 											<div class="slot">
 												<div class="time">9pm</div><div class="class">Closed</div>
@@ -708,10 +841,10 @@
 												<div class="time">5:15pm</div><div class="class">Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.</div>
 											</div>							
 											<div class="slot">
-												<div class="time">6pm</div><div class="class">Judo/Competition Brazilian Jiu-jitsu</div>
+												<div class="time">6pm</div><div class="class">All Levels- MMA</div>
 											</div>							
 											<div class="slot">
-												<div class="time">7pm</div><div class="class"> All Levels- MMA</div>
+												<div class="time">7pm</div><div class="class">All Levels- Judo/Competition Brazilian Jiu-jitsu</div>
 											</div>							
 											<div class="slot">
 												<div class="time">8pm</div><div class="class">Adults- Advanced Brazilian Jiu-jitsu</div>
@@ -761,21 +894,18 @@
 												<div class="time">7am</div><div class="class">Strength & Conditioning</div>
 											</div>			
 											<div class="slot">
-												<div class="time">8am</div><div class="class">All Levels - No-Gi Grappling/MMA</div>
+												<div class="time">8am</div><div class="class">All Levels- MMA.</div>
 											</div>			
 											<div class="slot">
-												<div class="time">9am</div><div class="class">All Levels- Judo/Brazilian Jiu-jitsu Fundamentals</div>
+												<div class="time">9am</div><div class="class">All Levels- No-Gi Grappling. </div>
 											</div>			
 											<div class="slot">
-												<div class="time">10am</div><div class="class">All Levels- Advanced Brazilian Jiu-jitsu</div>							
+												<div class="time">10am</div><div class="class">All Levels- Judo/Brazilian Jiu-jitsu Fundamentals.</div>							
 											</div>							
 											<div class="slot">
 												<div class="time">11am</div><div class="class">Open Mat</div>							
 											</div>	
-
-<!-- 										</div>	
-
-										<div class="pm"> -->									
+							
 											
 											<div class="slot">
 												<div class="time">1pm</div><div class="class">Closed</div>
@@ -834,40 +964,21 @@
 					<a href="https://www.instagram.com/abunaimmajj/">
 						<img title="Instagram" alt="Instagram" src="https://socialmediawidgets.files.wordpress.com/2014/03/10_instagram1.png" width="35" height="35" />
 					</a>
-							
-<!-- 							<div class="iconContainer">
-								<a href="https://www.facebook.com/Abunai-MMA-JiujitsuNava-Brazilian-Jiu-jitsu-298814180276100/">
-									<img src="icon-facebook.png" alt="">
-									<div class="iconTitle">
-										Facebook	
-									</div>
-								</a>
-							</div>								
-							<div class="iconContainer">
-								<a href="https://www.facebook.com/Abunai-MMA-JiujitsuNava-Brazilian-Jiu-jitsu-298814180276100/">
-									<img src="icon-youtube.png" alt="">
-									<div class="iconTitle">
-										Youtube	
-									</div>
-								</a>
-							</div>								
-							<div class="iconContainer">
-								<a href="https://www.facebook.com/Abunai-MMA-JiujitsuNava-Brazilian-Jiu-jitsu-298814180276100/">
-									<img src="icon-instagram.png" alt="">
-									<div class="iconTitle">
-										Instagram	
-									</div>
-								</a>
-							</div>	 -->	
+			
 				</div>
 			</div>
 
 			<div class="footerContent">
 				<div class="contactInfoWrapper">
-					<img src="logo.png" alt="">
+					<div class="logoWrapper">
+						<img src="navaLogo.png" alt="">
+						<img src="abunaiLogo.png" alt="">
+						<img src="aresLogo.png" alt="">
+					</div>
+					
 					<div class="footerFiller"></div>
 					<div class="contactInfoInner">
-						<div class="contactInfoSlot">1060 N Eliseo Felix Jr Way Avondale, AZ 85823</div>
+						<div class="contactInfoSlot">1060 N Eliseo Felix Jr Way Avondale, AZ 85323</div>
 						<div class="contactInfoSlot">abunaimma@gmail.com</div>
 						<div class="contactInfoSlot">623.826.6174</div>
 					</div>
@@ -876,16 +987,11 @@
 
 				</div>
 				<div class="mapInfo">
-					<script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script><div style='overflow:hidden;height:300px;width:auto;'><div id='gmap_canvas' style='height:300px;width:auto'></div><div><small><a href="http://www.embedgooglemaps.com/en/">Generate your map here, quick and easy!									Give your customers directions									Get found</a></small></div><div><small><a href="https://top10geeks.com/top-10-best-basketball-shoes-2016/">Top 10 basketball shoes</a></small></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><script type='text/javascript'>function init_map(){var myOptions = {zoom:10,center:new google.maps.LatLng(33.4437395,-112.33733480000001),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(33.4437395,-112.33733480000001)});infowindow = new google.maps.InfoWindow({content:'<strong>Title</strong><br>1060 N Eliseo Felix Jr Way<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
+					<iframe id="googleMap" width="100%" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=1060%20N%20Eliseo%20Felix%20Jr%20Way%20Avondale&key=AIzaSyBHpZL74xN80SZ9yZKYF6mIey_FYWUyHls" allowfullscreen></iframe>		
 				</div>
 			</div>
-
 			<div class="copyright">
-				<p>© Copyright 2016, Abunai MMA</p>
-
+				<p> Copyright 2016, Abunai MMA </p>
 			</div>
-		</div>
-		<div>
-
-	</div>
 	</footer>
+</body>
