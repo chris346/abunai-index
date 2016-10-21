@@ -67,7 +67,7 @@
 			height: auto;
 		}
 		#risingSun{
-			display: none;
+			display: block;
 		}
 		#logoReveal{
 			display:block;
@@ -91,6 +91,7 @@
 			}
   		}
 /*/HERO*********************/
+
 /*messageBoard*********************/
 	.menu-on{
 		background-color: rgba(0,0,0,0);
@@ -150,6 +151,89 @@
 		display: block;
 	}
 /*messageBoard*********************/
+/*eventBoard*********************/
+	.event-on{
+		background-color: rgba(0,0,0,0);
+		width: 40px; /*also used to adjust icon size*/
+		color: #fff;
+		position: absolute;
+		right: 0; /*to adjust position of button*/
+		top: 0; /*to adjust position of button*/
+		z-index: 1000; /*might need to adjust when using other buttons*/
+		padding: 10px;
+		margin-top: 15%;
+	}
+	@media screen and (min-width: 600px){
+		.event-on{
+			width: 50px; /*may need to adjust as more buttons are added*/
+			margin-top: 10%;
+		}	
+	}
+	.event-off{
+		position: absolute;
+		width: 50px; /*also used to adjust icon size*/
+		top: 0;
+		right: 0;
+		z-index: 1004;
+		display: none;
+	}
+
+	.eventBoard {
+		position: absolute;
+		right: 0;
+		top: 0; 
+		min-width: 200px;
+		z-index: 1002;
+		display: none;
+		width: 100%;
+		height: 100%;
+	}	
+	@media screen and (min-width: 600px){
+		.eventBoard{
+			width: 45%;
+		}	
+	}
+	.event-icon{
+		width: 30px;
+	}
+	.x-icon{
+		width: 30px;
+		margin-right: 17%;
+	}
+	#toggle-event {
+		display: none;
+	}
+	#toggle-event:checked ~ .eventBoard {
+		display: block;
+	}
+	#toggle-event:checked ~ .event-off{
+		display: block;
+	}
+	.eventBoard{
+		background-color: #222;
+		height: auto;
+	}	
+	.eventBoard-title{
+		background-color: #222;
+		margin-top: 20px;
+	}
+	.eventSlot{
+		margin-top: 10px;
+		border: white solid 1px;
+		display: flex;
+	}
+	.eventSlot-image{
+		flex:1;
+		min-height: 120px;
+	}	
+	.eventSlot-info{
+		flex:3;
+		min-height: 120px;
+	}
+	.event-field {
+		color: #d70000;
+	}
+/*eventBoard*********************/
 /*picture**************************/
 	.picture-on{
 		background-color: rgba(0,0,0,0);
@@ -160,12 +244,12 @@
 		top: 100; /*to adjust position of button*/
 		z-index: 1000; /*might need to adjust when using other buttons*/
 		padding: 10px;
-		margin-top: 15%;
+		margin-top: 30%;
 	}
 	@media screen and (min-width: 600px){
 		.picture-on{
 			width: 50px; /*may need to adjust as more buttons are added*/
-			margin-top: 10%;
+			margin-top: 20%;
 
 		}	
 	}
@@ -229,12 +313,12 @@
 		top: 100; /*to adjust position of button*/
 		z-index: 1000; /*might need to adjust when using other buttons*/
 		padding: 10px;
-		margin-top: 30%;
+		margin-top: 45%;
 	}
 	@media screen and (min-width: 600px){
 		.video-on{
 			width: 50px; /*may need to adjust as more buttons are added*/
-			margin-top: 20%;
+			margin-top: 30%;
 
 		}	
 	}
@@ -296,38 +380,38 @@
 
 	}
 /*	-----------------*/
-#realtime {
-    font-family: Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
-    font-weight: 100;
-    display: block;
-    text-align: center;
-    font-size: 3vw;
-    padding: 1rem 0;
-}
+	#realtime {
+	    font-family: Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+	    font-weight: 100;
+	    display: block;
+	    text-align: center;
+	    font-size: 3vw;
+	    padding: 1rem 0;
+	}
 
-#realtime span {
-    display: inline-block;
-    font-family: Avenir Next, Nunito, sans-serif;
-    font-weight: 100;
-    font-size: 3vw;
-    position: relative;
-    top: -1.5vw;
-}
+	#realtime span {
+	    display: inline-block;
+	    font-family: Avenir Next, Nunito, sans-serif;
+	    font-weight: 100;
+	    font-size: 3vw;
+	    position: relative;
+	    top: -1.5vw;
+	}
 
-@media all and (max-width: 600px) {
-    #realtime {
-        font-size: 2rem;
-        padding: 0rem 0;
-    };
-}
+	@media all and (max-width: 600px) {
+	    #realtime {
+	        font-size: 2rem;
+	        padding: 0rem 0;
+	    };
+	}
 
-@media all and (max-width: 350px) {
- 
-    #realtime {
-        font-size: 3rem;
-        padding: 2rem 0;
-    };
-}
+	@media all and (max-width: 350px) {
+	 
+	    #realtime {
+	        font-size: 3rem;
+	        padding: 2rem 0;
+	    };
+	}
 /*videoroom*********************/
 /*MAIN*********************/
 		.main{
@@ -513,11 +597,11 @@
 			display: flex;
 			flex-direction: column;
 		}
-/*		.contactInfoWrapper img{
+		/*.contactInfoWrapper img{
 			width: 40%;
 			margin: 0 auto;
-		}
-*/		.contactInfoInner{
+		}*/
+		.contactInfoInner{
 			flex: 1;
 			padding-top: 10px;
 			background-color: #222	
@@ -573,6 +657,83 @@
 				<div class="messageBoard">				
 				<a class="twitter-timeline" data-theme="dark" data-link-color="#E81C4F" href="https://twitter.com/abunaimmajj">Message Board by abunaimmajj</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>				</div>
 			<!-- Message Board	-->	
+			<!-- Event Board	-->
+				<input id="toggle-event" type="checkbox" />
+				<label for="toggle-event" class="event-on"><img class="event-icon" src="icon-event.png" alt=""></label>
+				<label for="toggle-event" class="event-off"><img class="x-icon" src="x.png" alt=""></label>
+				
+				<div class="eventBoard">
+					<div class="eventBoard-title">
+						<h1>Event Board</h1>
+					</div>
+
+					<div class="eventSlot">
+						<div class="eventSlot-image">
+							<img src="warriorChallenge.jpg" alt="">
+						</div>
+						<div class="eventSlot-info">
+							<h3>Warrior Challenge No-Gi 2016</h3>
+							<h4><span class="event-field">Date:</span>Oct.22, 2016 (Saturday)</h4>
+							<h4><span class="event-field">Time:</span>8am - 4pm</h4>
+							<h4><span class="event-field">Location</span>1660 S Alma School Rd, Ste 118, Mesa, Arizona 85210 (Ares/Nava Brazilian Jiu-Jitsu)</h4>
+							<a href="https://www.facebook.com/events/1137282656317887/">Full Details Here</a>
+						</div>
+					</div>		
+
+					<div class="eventSlot">
+						<div class="eventSlot-image">
+							<img src="ucfc.jpg" alt="">
+						</div>
+						<div class="eventSlot-info">
+							<h3>UCFC</h3>
+							<h4><span class="event-field">Date:</span>Oct.28, 2016 (Friday)</h4>
+							<h4><span class="event-field">Time:</span>6:00 pm</h4>
+							<h4><span class="event-field">Location</span>1300 S Country Drive #105, Mesa, AZ 85210 (Arizona Event Center</h4>
+							<a href="https://www.facebook.com/events/202652730157344/">Full Details Here</a>
+						</div>
+					</div>	
+									
+					<div class="eventSlot">
+						<div class="eventSlot-image">
+							<img src="badBlood.jpg" alt="">
+						</div>
+						<div class="eventSlot-info">
+							<h3>Bad Blood Muay Thai</h3>
+							<h4><span class="event-field">Date:</span>Nov.12, 2016 (Saturday)</h4>
+							<h4><span class="event-field">Time:</span>6:00 pm</h4>
+							<h4><span class="event-field">Location</span>1300 S Country Drive #105, Mesa, AZ 85210 (Arizona Event Center</h4>
+							<a href="http://badbloodaz.com/upcoming-events/">Full Details Here</a>
+						</div>
+					</div>	
+
+					<div class="eventSlot">
+						<div class="eventSlot-image">
+							<img src="10thplanet.jpg" alt="">
+						</div>
+						<div class="eventSlot-info">
+							<h3>10th Planet Jiu-jitsu Seminar</h3>
+							<h4><span class="event-field">Date:</span>Nov. 19, 2016 (Saturday)</h4>
+							<h4><span class="event-field">Time:</span>10:00am-12:00pm</h4>
+							<h4><span class="event-field">Location</span>6150 W Chandler Blvd, Ste 5, Chandler, Arizona 85226</h4>
+							<a href="https://www.facebook.com/events/207188723044482/">Full Details Here</a>
+						</div>
+					</div>			
+					
+					<div class="eventSlot">
+						<div class="eventSlot-image">
+							<img src="mastersCup.jpg" alt="">
+						</div>
+						<div class="eventSlot-info">
+							<h3>2016 AZ Masters BJJ Cup</h3>
+							<h4><span class="event-field">Date:</span>Dec. 10, 2016 (Saturday)</h4>
+							<h4><span class="event-field">Time:</span>10:00am-2:00pm</h4>
+							<h4><span class="event-field">Location</span>1202 W. Thomas Rd., Phoenix, AZ 85013 (Phoenix College)</h4>
+							<a href="http://gdjjevents.com/az-masters-bjj-cup/">Full Details Here</a>
+						</div>
+					</div>						
+												
+				</div>
+			<!-- Event Board	-->	
 			<!-- Picture Room	-->
 				<input id="toggle-picture" type="checkbox" />
 				<label for="toggle-picture" class="picture-on"><img class="picture-icon" src="icon-picture.png" alt=""></label>
@@ -675,27 +836,27 @@
 
 						// --------------------------
 
-						        setTimeout(switchHero, 6000); //Instead of 10000 put your video's length, in milliseconds  
-            					function switchHero() {
-                					document.getElementById("logoReveal").style.display="none";    
-                					document.getElementById("risingSun").style.display="block"; 
-           						 }
-						 $(function(){ 
-    						var video = document.querySelector('#logoReveal');
-   						 	video.play();
-						});
+						//         setTimeout(switchHero, 6000); //Instead of 10000 put your video's length, in milliseconds  
+      //       					function switchHero() {
+      //           					document.getElementById("logoReveal").style.display="none";    
+      //           					document.getElementById("risingSun").style.display="block"; 
+      //      						 }
+						//  $(function(){ 
+    		// 				var video = document.querySelector('#logoReveal');
+   			// 			 	video.play();
+						// });
 
 					</script>	
 				</div>
 			<!-- video Room	-->		
 				<img id="risingSun" src="risingSunLogoHD.jpg" alt="">
-				<div class="videoContainer">
+<!-- 			<div class="videoContainer">
 					<video id="logoReveal" width="1000px" webkit-playsinline autoplay muted>
 						<source src="logoReveal02.mp4" type="video/mp4">
 						<source src="mov_bbb.ogg" type="video/ogg">
 						Your browser does not support HTML5 video.
 					</video>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -704,7 +865,7 @@
 		<div class="linearGradientTypeBottom">
 			<div class="mainInner">
 				<article class="article">
-					<img src="dojo.jpg" alt="">
+					<img src="logoReveal.gif" alt="">
 					<div class="text">
 						<div class="textInner">
 							
