@@ -20,24 +20,42 @@
 /*BODY*********************/
 /*HEADER*********************/
 		.header{
-			background: #000;
+			/*background: #000;*/
 			font-family: helvetica;
-
+			position: fixed;
+			margin: 0 auto;
+			z-index: 1000;
+			width: 100%;
 		}
 		.headerInner{
 			margin: 0 auto;
 			padding-bottom:0%;
-			background: #444;
+			/*background: #444;*/
+			display: flex;
+		}
+		.navSpacerLeft{
+			flex:2;
+		}
+		.navBox{
+			flex:1;
+			/*border: white solid 1px;*/
+			text-align: center;
+		}
+		.navSpacerRight{
+			flex:1;
+		}
+		.headerInner{
+			color: #fff;
+			font-size: .8em;
 		}
 		@media screen and (min-width: 960px){
 			.headerInner{
-				width: 960px;
 				padding-bottom:0%;
+
 			}	
+
 		}
-		.headerInner{
-			color: #d70000;
-		}
+	
 
 /*/HEADER*********************/
 /*HERO*********************/
@@ -151,6 +169,7 @@
 		display: block;
 	}
 /*messageBoard*********************/
+
 /*eventBoard*********************/
 	.event-on{
 		background-color: rgba(0,0,0,0);
@@ -234,6 +253,78 @@
 		color: #d70000;
 	}
 /*eventBoard*********************/
+/*feesBoard*********************/
+	.fees-on{
+		background-color: rgba(0,0,0,0);
+		width: 40px; /*also used to adjust icon size*/
+		color: #fff;
+		position: absolute;
+		right: 0; /*to adjust position of button*/
+		top: 0; /*to adjust position of button*/
+		z-index: 1000; /*might need to adjust when using other buttons*/
+		padding: 10px;
+		margin-top: 30%;
+	}
+	@media screen and (min-width: 600px){
+		.fees-on{
+			width: 50px; /*may need to adjust as more buttons are added*/
+			margin-top: 20%;
+		}	
+	}
+	.fees-off{
+		position: absolute;
+		width: 50px; /*also used to adjust icon size*/
+		top: 0;
+		right: 0;
+		z-index: 1004;
+		display: none;
+	}
+
+	.feesBoard {
+		position: absolute;
+		right: 0;
+		top: 0; 
+		min-width: 200px;
+		z-index: 1002;
+		display: none;
+		width: 100%;
+		height: 100%;
+	}	
+	@media screen and (min-width: 600px){
+		.feesBoard{
+			width: 45%;
+		}	
+	}
+	.fees-icon{
+		width: 30px;
+	}
+	.x-icon{
+		width: 30px;
+		margin-right: 17%;
+	}
+	#toggle-fees {
+		display: none;
+	}
+	#toggle-fees:checked ~ .feesBoard {
+		display: block;
+	}
+	#toggle-fees:checked ~ .fees-off{
+		display: block;
+	}
+	.feesBoard{
+		background-color: #222;
+		height: auto;
+	}
+
+	.feesBoard h3{
+		margin-top: 35px;
+	}	
+	.feesBoard-title{
+		color: #d70000;
+		margin-top: 30px;
+	}
+
+/*feesBoard*********************/
 /*picture**************************/
 	.picture-on{
 		background-color: rgba(0,0,0,0);
@@ -379,7 +470,7 @@
 		margin-bottom: 20px;
 
 	}
-/*	-----------------*/
+/*clock*********************/
 	#realtime {
 	    font-family: Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
 	    font-weight: 100;
@@ -412,6 +503,7 @@
 	        padding: 2rem 0;
 	    };
 	}
+/*clock*********************/
 /*videoroom*********************/
 /*MAIN*********************/
 		.main{
@@ -482,6 +574,10 @@
 			font-size: 2em;
 			text-align: center;
 			color: #d70000;
+		}
+		.text1{
+			margin-left: 0em;
+			margin-left: 0em;
 		}
 		.aside{
 			background-color: rgba(0,0,0, .6);
@@ -627,7 +723,7 @@
 		}
 		.copyright{
 			font-size: .6em;
-			color: white;
+			color: white;	
 			border-top: #d70100 solid 1px;
 		}
 /*********************FOOTER*/
@@ -637,9 +733,13 @@
 </head>
 <body>
 <!-- div class="overlay"></div> -->
-   <!-- 	<div class="header">
+<!--    	<div class="header">
 		<div class="headerInner">
-				<h1>Abunai MMA</h1>
+				<div class="navSpacerLeft"></div>
+				<div class="navBox"><a href="">HOME</a></div>
+				<div class="navBox"><a href="">PHOTOS</a></div>
+				<div class="navBox"><a href="">VIDEOS</a></div>
+				<div class="navSpacerRight"></div>
 		</div>
 	</div> -->
 <!-- 	<div class="overlay"></div> -->
@@ -662,64 +762,8 @@
 				<label for="toggle-event" class="event-on"><img class="event-icon" src="icon-event.png" alt=""></label>
 				<label for="toggle-event" class="event-off"><img class="x-icon" src="x.png" alt=""></label>
 				
-				<div class="eventBoard">
-					<div class="eventBoard-title">
-						<h1>Event Board</h1>
-					</div>
-
-					<div class="eventSlot">
-						<div class="eventSlot-image">
-							<img src="warriorChallenge.jpg" alt="">
-						</div>
-						<div class="eventSlot-info">
-							<h3>Warrior Challenge No-Gi 2016</h3>
-							<h4><span class="event-field">Date:</span>Oct.22, 2016 (Saturday)</h4>
-							<h4><span class="event-field">Time:</span>8am - 4pm</h4>
-							<h4><span class="event-field">Location</span>1660 S Alma School Rd, Ste 118, Mesa, Arizona 85210 (Ares/Nava Brazilian Jiu-Jitsu)</h4>
-							<a href="https://www.facebook.com/events/1137282656317887/">Full Details Here</a>
-						</div>
-					</div>		
-
-					<div class="eventSlot">
-						<div class="eventSlot-image">
-							<img src="ucfc.jpg" alt="">
-						</div>
-						<div class="eventSlot-info">
-							<h3>UCFC</h3>
-							<h4><span class="event-field">Date:</span>Oct.28, 2016 (Friday)</h4>
-							<h4><span class="event-field">Time:</span>6:00 pm</h4>
-							<h4><span class="event-field">Location</span>1300 S Country Drive #105, Mesa, AZ 85210 (Arizona Event Center</h4>
-							<a href="https://www.facebook.com/events/202652730157344/">Full Details Here</a>
-						</div>
-					</div>	
-									
-					<div class="eventSlot">
-						<div class="eventSlot-image">
-							<img src="badBlood.jpg" alt="">
-						</div>
-						<div class="eventSlot-info">
-							<h3>Bad Blood Muay Thai</h3>
-							<h4><span class="event-field">Date:</span>Nov.12, 2016 (Saturday)</h4>
-							<h4><span class="event-field">Time:</span>6:00 pm</h4>
-							<h4><span class="event-field">Location</span>1300 S Country Drive #105, Mesa, AZ 85210 (Arizona Event Center</h4>
-							<a href="http://badbloodaz.com/upcoming-events/">Full Details Here</a>
-						</div>
-					</div>	
-
-					<div class="eventSlot">
-						<div class="eventSlot-image">
-							<img src="10thplanet.jpg" alt="">
-						</div>
-						<div class="eventSlot-info">
-							<h3>10th Planet Jiu-jitsu Seminar</h3>
-							<h4><span class="event-field">Date:</span>Nov. 19, 2016 (Saturday)</h4>
-							<h4><span class="event-field">Time:</span>10:00am-12:00pm</h4>
-							<h4><span class="event-field">Location</span>6150 W Chandler Blvd, Ste 5, Chandler, Arizona 85226</h4>
-							<a href="https://www.facebook.com/events/207188723044482/">Full Details Here</a>
-						</div>
-					</div>			
-					
-					<div class="eventSlot">
+				<div class="eventBoard">	
+<!-- 					<div class="eventSlot">
 						<div class="eventSlot-image">
 							<img src="mastersCup.jpg" alt="">
 						</div>
@@ -730,18 +774,94 @@
 							<h4><span class="event-field">Location</span>1202 W. Thomas Rd., Phoenix, AZ 85013 (Phoenix College)</h4>
 							<a href="http://gdjjevents.com/az-masters-bjj-cup/">Full Details Here</a>
 						</div>
-					</div>						
+					</div>	 -->	
+
+					<div class="eventSlot">
+						<div class="eventSlot-image">
+							<img src="dan.jpg" alt="">
+						</div>
+						<div class="eventSlot-info">
+							<h3>4th Annual DAN Tournament</h3>
+							<h4><span class="event-field">Date:</span>Jan. 7, 2017 (Sat)</h4>
+							<h4><span class="event-field">Time:</span>9:00am-3:00pm</h4>
+							<h4><span class="event-field">Location</span>1660 S Alma School Rd, Ste 118, Mesa, Arizona 85210 (Ares/Nava Brazilian Jiu-Jitsu)</h4>
+							<a href="https://www.facebook.com/events/386182725059177/">Full Details Here</a>
+						</div>
+					</div>	
+
+					<div class="eventSlot">
+						<div class="eventSlot-image">
+							<img src="boogey.jpg" alt="">
+						</div>
+						<div class="eventSlot-info">
+							<h3>Boogeyman Seminar</h3>
+							<h4><span class="event-field">Date:</span>Jan. 14 (Sat)</h4>
+							<h4><span class="event-field">Time:</span>1:00pm</h4>
+							<h4><span class="event-field">Location</span>6150 W Chandler Blvd, Ste 5 Chandler, AZ 85226</h4>
+							<a href="https://www.facebook.com/jpjjcta/photos/gm.1271988456193139/1557362664278357/?type=3&theater">Full Details Here</a>
+						</div>
+					</div>	
+
+					<div class="eventSlot">
+						<div class="eventSlot-image">
+							<img src="bjjOpen.jpeg" alt="">
+						</div>
+						<div class="eventSlot-info">
+							<h3>12th Az International Jiu-Jitsu Open</h3>
+							<h4><span class="event-field">Date:</span>Feb. 11, 2017 (Sat)</h4>
+							<h4><span class="event-field">Time:</span>9:00am-3:00pm</h4>
+							<h4><span class="event-field">Location</span>1202 W. Thomas Rd., Phoenix, AZ 85013. (Phoenix College - North Gym)</h4>
+							<a href="http://www.azsbjjf.com/12th-az-international-jiu-jitsu-open-february-25th-26th/">Full Details Here</a>
+						</div>
+					</div>	
+
+					<div class="eventSlot">
+						<div class="eventSlot-image">
+							<img src="naga.jpg" alt="">
+						</div>
+						<div class="eventSlot-info">
+							<h3>NAGA - Phoenix Championship</h3>
+							<h4><span class="event-field">Date:</span>Feb. 25 and 26, 2017 (Sat, Sun)</h4>
+							<h4><span class="event-field">Time:</span>9:00am-3:00pm</h4>
+							<h4><span class="event-field">Location</span>1202 W. Thomas Rd., Phoenix, AZ 85013. (Phoenix College)</h4>
+							<a href="http://nagafighter.com/index.php?module=eventinformationpage%2F543">Full Details Here</a>
+						</div>
+					</div>																
 												
 				</div>
 			<!-- Event Board	-->	
+			<!-- Fees Board	-->
+				<input id="toggle-fees" type="checkbox" />
+				<label for="toggle-fees" class="fees-on"><img class="fees-icon" src="icon-fees.png" alt=""></label>
+				<label for="toggle-fees" class="fees-off"><img class="x-icon" src="x.png" alt=""></label>
+				
+				<div class="feesBoard">
+					<div class="feesBoard-title">
+						<h1 class="title">Fees</h1>
+					</div>
+
+
+					<h3>Monthly-Kids (5yrs-17yrs): $50</h3>
+					<h3>Monthly-Adults (18-up): $60</h3> 
+					<h3>Weekly: $35</h3>
+					<h3>Drop In: $10</h3>
+					<h3>Open Mat: $5</h3>
+					<h3>Affiliate: No Open-Mat Fee</h3>
+					<h3>Privates. 1/2Hr. $25. 1Hr. $35.</h3>
+					<h2 class="feesBoard-title">No Contract! Free 2 week Trial</h2>
+
+					
+												
+				</div>
+			<!-- Fees Board	-->	
 			<!-- Picture Room	-->
-				<input id="toggle-picture" type="checkbox" />
+<!-- 				<input id="toggle-picture" type="checkbox" />
 				<label for="toggle-picture" class="picture-on"><img class="picture-icon" src="icon-picture.png" alt=""></label>
 				<label for="toggle-picture" class="picture-off"><img class="x-icon" src="x.png" alt=""></label>
 				<div class="pictureRoom">
 					<h2>PHOTOS</h2>
 					<iframe class="pictureFrame"scrolling="no" marginheight="0" frameborder="0" width="100%" style="height: 1500px;" src="http://facebookgalleria.com/gallery.php?id=580021405488708&display=album&rows=10&margin=10&cols=5&width=150&font_size=10&title_color=000000&hide_next_back=0&share_buttons=1&shape=rectangle&frame=1&token=76f07b3e-89fe-11e6-b31c-30eb0f887bd0"></iframe>			
-				</div>
+				</div> -->
 			<!-- Picture Room	-->			
 			<!-- video Room	-->
 				<input id="toggle-video" type="checkbox" />
@@ -789,31 +909,37 @@
 							if(day == "Mon"){
 								document.getElementById("todaysDate").innerHTML = dayOfWeek;
 								document.getElementById("todaysSchedule").innerHTML = 
-								"8am. All Levels- No-Gi Grappling.<br>9am. All Levels- Judo/Brazilian Jiu-jitsu Fundamentals.<br>10am. Adults- Advanced Brazilian Jiu-jitsu.<br>11am. Closed.<br>5:15pm. Kids- Judo/Competition Brazilian Jiu-jitsu.<br>6pm. All Levels- Brazilian Jiu-jitsu Fundamentals.<br>7pm. All Levels- No-Gi Grappling.<br> 8pm. Adults- Advanced Brazilian Jiu-jitsu.<br> 9pm. Closed"
+								"8am. Adults- Advanced Brazilian Jiu-jitsu<br> 9am. All Levels- Fundamentals Jiu-jitsu<br> 10am. All Levels- No-Gi Grappling<br>11am. Closed.<br> 5:15pm. Kids- Competition Jiu-jitsu/Judo<br> 6pm. All Levels- Fundamentals Jiu-jitsu.<br> 7pm. All Levels- No-Gi Grappling.<br> 8pm. Adults- Advanced Jiu-jitsu/Judo<br> 9pm. Closed"
+							
 							} else if(day == "Tue"){
 								document.getElementById("todaysDate").innerHTML = dayOfWeek;
 								document.getElementById("todaysSchedule").innerHTML = 
-								"5:15pm. Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.<br> 6pm. All Levels- MMA.<br>  7pm. All Levels- Judo/Competition Brazilian Jiu-jitsu.<br> 8pm. Adults- Advanced Brazilian Jiu-jitsu.<br>  9pm. Closed.";
+								"5:15pm. Kids- Combatives Jiu-jitsu<br> 6pm. Beginner- Fundamentals MMA<br> 7pm. Intermediate- MMA<br>  8pm. Advanced- Ohana Fight Team<br> 9:30pm. Closed";
+							
 							} else if(day == "Wed"){
 								document.getElementById("todaysDate").innerHTML = dayOfWeek;
 								document.getElementById("todaysSchedule").innerHTML = 
-								"5:15pm. Kids- Judo/Competition  Brazilian Jiu-jitsu.<br>6pm. All Levels- Brazilian Jiu-jitsu Fundamentals.<br>   7pm. All Levels- No-Gi Grappling. <br>8pm. Adults- Advanced Brazilian Jiu-jitsu.<br>9pm. Closed. ";
+								"5:15pm. Kids- Fundamentals Jiu-jitsu<br>6pm. All Levels- Competition Jiu-jitsu/Judo<br>   7pm. All Levels- No-Gi Grappling <br>8pm. Adults- Advanced Jiu-jitsu/Judo<br>9pm. Closed. ";
+							
 							} else if(day == "Thu"){
 								document.getElementById("todaysDate").innerHTML = dayOfWeek;
 								document.getElementById("todaysSchedule").innerHTML = 
-								"5:15pm. Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.<br>6pm. All Levels- MMA.<br> 7pm. All Levels- Judo/Competition Brazilian Jiu-jitsu.<br> 8pm. Adults- Advanced Brazilian Jiu-jitsu.<br> 9pm. Closed.";
+								"5:15pm. Lil Samurai- MMA<br>  6pm. Adults Beginner- MMA<br> 7pm. Intermediate- MMA<br>  8pm. Advanced- Ohana Fight Team<br> 9:30pm. Closed";
+							
 							} else if(day == "Fri"){
 								document.getElementById("todaysDate").innerHTML = dayOfWeek;
 								document.getElementById("todaysSchedule").innerHTML = 
-								"5:15pm. All Levels- Brazilian Jiu-jitsu Fundamentals.<br> 6pm. All Levels- No-Gi Grappling.<br> 7pm. Adults- Advanced Brazilian Jiu-jitsu.<br>8pm. Closed.";
+								"5:15pm. All Levels- Competition Jiu-jitsu/Judo<br> 6pm. Beginner- Fundamentals MMA<br> 7pm. Adults- Advanced Jiu-jitsu/Judo<br>8pm. Closed.";
+							
 							} else if(day == "Sat"){
 								document.getElementById("todaysDate").innerHTML = dayOfWeek;
 								document.getElementById("todaysSchedule").innerHTML = 
-								"7am. Strength & Conditioning.<br>8am. All Levels- MMA.<br>All Levels- No-Gi Grappling<br>10am. All Levels- Judo/Brazilian Jiu-jitsu Fundamentals.<br>11pm. Open Mat.<br>1pm. Closed. ";
-							} else if(day == "Sun"){
+								"7am. Strength & Conditioning.<br>8am. All Levels- MMA.<br>9am. All Levels- Fundamentals Jiu-jitsu/Judo<br> 10am. All Levels- No-Gi Grappling<br>11pm. Open Mat.<br>1pm. Closed. ";
+							
+							 	} else if(day == "Sun"){
 								document.getElementById("todaysDate").innerHTML = dayOfWeek;
 								document.getElementById("todaysSchedule").innerHTML = 
-								"•3pm-5pm. Open Mat. (TBA)";
+								"3pm. Open Mat.<br>5pm. Closed";
 							}
 						}
 					
@@ -837,15 +963,6 @@
 						// --------------------------
 
 						//         setTimeout(switchHero, 6000); //Instead of 10000 put your video's length, in milliseconds  
-      //       					function switchHero() {
-      //           					document.getElementById("logoReveal").style.display="none";    
-      //           					document.getElementById("risingSun").style.display="block"; 
-      //      						 }
-						//  $(function(){ 
-    		// 				var video = document.querySelector('#logoReveal');
-   			// 			 	video.play();
-						// });
-
 					</script>	
 				</div>
 			<!-- video Room	-->		
@@ -873,18 +990,25 @@
 							<p class="text0">To spread the knowledge of Jiu-jitsu/Martial art. Improvement in health, also the values of positive attitude, discipline, respect, help students becoming well-rounded, responsible and successful individuals in life.</p>
 							
 							<h1 class="title">About Us</h1>
-							<p class="text1">
-								Abunai MMA & Jiujitsu specializes in Brazilian Jiu jitsu, Muay Thai, Judo as well as Mixed Martial Arts, and Self-defense training.
-							</p>
-							<p class="text2">
-								Abunai MMA & Jiujitsu is a Nava Brazilian Jiu-jitsu /Ares Brazilian Jiu-jitsu Affiliate.
-							</p>
-							<p class="text3">
-								Abunai MMA & Jiujitsu is dedicated to improving the lives of its students through the practice of martial arts. Students learn not only one of the most effective systems of self-defense and martial arts, but also one of the most complete forms of health improvement that give the values of positive attitude, discipline, respect, help students becoming well-rounded, responsible and successful individuals in life. Our kids class is fun and great for confidence, stranger safety skills, character development as well as bully proofing. 
-							</p>
-								<!-- <p class="text4"> -->
-								Our cardio program is an awesome workout involving many different tools & exercise movements to get you in the shape you want. Our workouts are all technique based, so that the student develops skills through repetition which develops muscle memory. We focus on four categories of fitness: cardiovascular, flexibility, strength training, as well as self defense. We believe that the mind and body need to be healthy and strong. One of the keys to our program is the balance between traditional techniques and modern training methods that are safe and effective.
-							</p>
+							<ul class="text1">
+								<li>Abunai MMA & Jiujitsu specializes in Brazilian Jiu jitsu, Muay Thai, Judo as well as Mixed Martial Arts, and Self-defense training.</li>
+								<pre></pre>
+								<li>Abunai MMA & Jiujitsu is a Nava Brazilian Jiu-jitsu /Ares Brazilian Jiu-jitsu Affiliate.</li>
+								<pre></pre>
+								<li>Abunai MMA & Jiujitsu is dedicated to improving the lives of its students through the practice of martial arts. 
+								<pre></pre>
+								<li>Students learn not only one of the most effective systems of self-defense and martial arts, but also one of the most complete forms of health improvement that give the values of positive attitude, discipline, respect, help students becoming well-rounded, responsible and successful individuals in life. </li>
+								<pre></pre>
+								<li>Our kids class is fun and great for confidence, stranger safety skills, character development as well as bully proofing. </li>
+								<pre></pre>
+								<li>Our cardio program is an awesome workout involving many different tools & exercise movements to get you in the shape you want. </li>
+								<pre></pre>
+								<li>Our workouts are all technique based, so that the student develops skills through repetition which develops muscle memory. </li>
+								<pre></pre>
+								<li>We focus on four categories of fitness: cardiovascular, flexibility, strength training, as well as self defense. </li>
+								<pre></pre>
+								<li>We believe that the mind and body need to be healthy and strong. One of the keys to our program is the balance between traditional techniques and modern training methods that are safe and effective.</li>
+							</ul>
 	               		</div>
 					</div>
 				</article>
@@ -902,13 +1026,13 @@
 										<div class="groupedClasses" id="monday">
 											
 											<div class="slot">
-												<div class="time">8am</div><div class="class">All Levels- No-Gi Grappling</div>
+												<div class="time">8am</div><div class="class">Adults- Advanced Brazilian Jiu Jitsu</div>
 											</div>			
 											<div class="slot">
-												<div class="time">9am</div><div class="class">All Levels- Judo/Brazilian Jiu-jitsu Fundamentals</div>
+												<div class="time">9am</div><div class="class">All Levels- Fundamentals Jiu-jitsu</div>
 											</div>			
 											<div class="slot">
-												<div class="time">10am</div><div class="class"> Adults- Advanced Brazilian Jiu-jitsu</div>
+												<div class="time">10am</div><div class="class">All Levels- No-Gi Grappling</div>
 											</div>			
 											<div class="slot">
 												<div class="time">11am</div><div class="class"> Closed</div>							
@@ -916,16 +1040,16 @@
 						
 											
 											<div class="slot">
-												<div class="time">5:15pm</div><div class="class">Kids- Judo/Competition Brazilian Jiu-jitsu</div>
+												<div class="time">5:15pm</div><div class="class">Kids- Competition Jiu-jitsu/Judo</div>
 											</div>							
 											<div class="slot">
-												<div class="time">6pm</div><div class="class">All Levels- Brazilian Jiu-jitsu Fundamentals</div>
+												<div class="time">6pm</div><div class="class">All Levels- Fundamentals Jiu-jitsu</div>
 											</div>							
 											<div class="slot">
 												<div class="time">7pm</div><div class="class">All Levels- No-Gi Grappling</div>
 											</div>							
 											<div class="slot">
-												<div class="time">8pm</div><div class="class">Adults- Advanced Brazilian Jiu-jitsu</div>
+												<div class="time">8pm</div><div class="class">Adults- Advanced Brazilian Jiu-jitsu/Judo</div>
 											</div>							
 											<div class="slot">
 												<div class="time">9pm</div><div class="class">Closed</div>
@@ -943,22 +1067,23 @@
 									<div class="period">
 
 										<div class="groupedClasses" id="tuesday">									
-											
+												
 											<div class="slot">
-												<div class="time">5:15pm</div><div class="class">Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.</div>
+												<div class="time">5:15pm</div><div class="class">Kids- Combatives Jiu-jitsu</div>
+											</div>		
+											<div class="slot">
+												<div class="time">6pm</div><div class="class">Beginner- Fundamentals MMA</div>
+											</div>		
+											<div class="slot">
+												<div class="time">7pm</div><div class="class">Intermediate- MMA</div>
+											</div>		
+											<div class="slot">
+												<div class="time">8pm</div><div class="class">Advanced- Ohana Fight Team</div>
+											</div>		
+											<div class="slot">
+												<div class="time">9:30</div><div class="class">Closed</div>
 											</div>							
-											<div class="slot">
-												<div class="time">6pm</div><div class="class">All Levels- MMA</div>
-											</div>							
-											<div class="slot">
-												<div class="time">7pm</div><div class="class">All Levels- Judo/Competition Brazilian Jiu-jitsu</div>
-											</div>							
-											<div class="slot">
-												<div class="time">8pm</div><div class="class">Adults- Advanced Brazilian Jiu-jitsu</div>
-											</div>							
-											<div class="slot">
-												<div class="time">9pm</div><div class="class">Closed</div>
-											</div>	
+
 										
 										</div>
 									</div>
@@ -972,16 +1097,16 @@
 										<div class="groupedClasses">									
 											
 											<div class="slot">
-												<div class="time">5:15pm</div><div class="class">Kids- Judo/Competition Brazilian Jiu-jitsu</div>
+												<div class="time">5:15pm</div><div class="class">Kids- Fundamentals Jiu-jitsu</div>
 											</div>							
 											<div class="slot">
-												<div class="time">6pm</div><div class="class">All Levels- Brazilian Jiu-jitsu Fundamentals.</div>
+												<div class="time">6pm</div><div class="class">All Levels- Competition Jiu-jitsu/Judo</div>
 											</div>							
 											<div class="slot">
 												<div class="time">7pm</div><div class="class">All Levels- No-Gi Grappling</div>
 											</div>							
 											<div class="slot">
-												<div class="time">8pm</div><div class="class">Adults- Advanced Brazilian Jiu-jitsu</div>
+												<div class="time">8pm</div><div class="class">Adults- Advanced Jiu-jitsu/Judo</div>
 											</div>							
 											<div class="slot">
 												<div class="time">9pm</div><div class="class">Closed</div>
@@ -997,21 +1122,21 @@
 									<div class="dayName">Thursday</div>
 
 										<div class="groupedClasses">									
-											
+													
 											<div class="slot">
-												<div class="time">5:15pm</div><div class="class">Kids- No-Gi/Brazilian Jiu-jitsu Fundamentals.</div>
-											</div>							
+												<div class="time">5:15pm</div><div class="class">Kids- Combatives Jiu-jitsu</div>
+											</div>		
 											<div class="slot">
-												<div class="time">6pm</div><div class="class">All Levels- MMA</div>
-											</div>							
+												<div class="time">6pm</div><div class="class">Beginner- Fundamentals MMA</div>
+											</div>		
 											<div class="slot">
-												<div class="time">7pm</div><div class="class">All Levels- Judo/Competition Brazilian Jiu-jitsu</div>
-											</div>							
+												<div class="time">7pm</div><div class="class">Intermediate- MMA</div>
+											</div>		
 											<div class="slot">
-												<div class="time">8pm</div><div class="class">Adults- Advanced Brazilian Jiu-jitsu</div>
-											</div>							
+												<div class="time">8pm</div><div class="class">Advanced- Ohana Fight Team</div>
+											</div>		
 											<div class="slot">
-												<div class="time">9pm</div><div class="class">Closed</div>
+												<div class="time">9:30</div><div class="class">Closed</div>
 											</div>	
 										
 										</div>
@@ -1027,13 +1152,13 @@
 										<div class="groupedClasses">									
 																	
 											<div class="slot">
-												<div class="time">5:15pm</div><div class="class">All Levels- Brazilian Jiu-jitsu Fundamentals</div>
+												<div class="time">5:15pm</div><div class="class">All Levels- Competition Jiu-jitsu/Judo</div>
 											</div>							
 											<div class="slot">
 												<div class="time">6pm</div><div class="class">All Levels- No-Gi Grappling</div>
 											</div>							
 											<div class="slot">
-												<div class="time">7pm</div><div class="class">Adults- Advanced Brazilian Jiu-jitsu</div>
+												<div class="time">7pm</div><div class="class">Adults- Advanced Jiu-jitsu/Judo</div>
 											</div>							
 											<div class="slot">
 												<div class="time">8pm</div><div class="class">Closed</div>
@@ -1058,10 +1183,10 @@
 												<div class="time">8am</div><div class="class">All Levels- MMA.</div>
 											</div>			
 											<div class="slot">
-												<div class="time">9am</div><div class="class">All Levels- No-Gi Grappling. </div>
+												<div class="time">9am</div><div class="class">All Levels- Fundamentals Jiu-jitsu/Judo</div>
 											</div>			
 											<div class="slot">
-												<div class="time">10am</div><div class="class">All Levels- Judo/Brazilian Jiu-jitsu Fundamentals.</div>							
+												<div class="time">10am</div><div class="class">All Levels- No-Gi Grappling</div>							
 											</div>							
 											<div class="slot">
 												<div class="time">11am</div><div class="class">Open Mat</div>							
@@ -1085,7 +1210,10 @@
 										<div class="groupedClasses">
 											
 											<div class="slot">
-												<div class="time">3-5PM</div><div class="class">Open Mat (TBA) </div>
+												<div class="time">3PM</div><div class="class">Open Mat</div>
+											</div>		
+											<div class="slot">
+												<div class="time">5PM</div><div class="class">Closed</div>
 											</div>			
 
 										</div>	
